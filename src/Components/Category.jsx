@@ -74,7 +74,7 @@ export default function Category() {
               category.map((item) => {
                 return <SwiperSlide onClick={() => gotoCategory(item)}>
                   <div className='slick_card rounded-xl overflow-hidden group cursor-pointer'>
-                    <img src={`http://localhost:3001/images/${item.image}`}
+                    <img src={`https://blog-api-azqx.onrender.com/images/${item.image}`}
                       className='w-full rounded-xl w-full h-60 relative group-hover:scale-110 duration-300 group-hover:blur-sm' alt="" />
                     <h2 className='text-center font-semibold text-2xl p-1.5 rounded-md absolute top-44 inset-x-12 bg-white group-hover:top-24 transition-all duration-500'>{item.name}</h2>
                   </div>

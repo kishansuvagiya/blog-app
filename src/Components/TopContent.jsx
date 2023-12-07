@@ -19,7 +19,7 @@ function Sliderr() {
                     {
                         blog1.map((item) => {
                             return <div className='relative image-part group overflow-hidden '>
-                                <img src={`http://localhost:3001/images/${item.image}`} className='w-full !rounded-lg   object-fill ' alt="" style={{height: '610px'}} />
+                                <img src={`https://blog-api-azqx.onrender.com/images/${item.image}`} className='w-full !rounded-lg   object-fill ' alt="" style={{height: '610px'}} />
                                 <h3 className='absolute bottom-5 px-6 text-xl lg:text-3xl text-white font-bold group-hover:underline cursor-pointer' onClick={() => gotoBlog(item)}>{item.title}</h3>
                             </div>
                                     
@@ -30,7 +30,7 @@ function Sliderr() {
                     {
                         blog2.map((item) => {
                             return <div className='relative image-part group overflow-hidden'>
-                                <img src={`http://localhost:3001/images/${item.image}`} className='w-full !rounded-lg h-60  object-fill' alt="" style={{height: '300px'}}/>
+                                <img src={`https://blog-api-azqx.onrender.com/images/${item.image}`} className='w-full !rounded-lg h-60  object-fill' alt="" style={{height: '300px'}}/>
                                 <h3 className='absolute bottom-5 px-6 cursor-pointer text-xl lg:text-3xl text-white font-bold group-hover:underline' onClick={() => gotoBlog(item)}>{item.title}</h3>
                             </div>
                         })

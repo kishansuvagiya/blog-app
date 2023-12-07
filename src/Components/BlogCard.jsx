@@ -57,7 +57,7 @@ export function BlogCard({ item }) {
           onClick={gotoBlog}
         >
           <img
-            src={`http://localhost:3001/images/${item.image}`}
+            src={`https://blog-api-azqx.onrender.com/images/${item.image}`}
             alt="ui/ux review check"
             className="w-full h-72"
           />

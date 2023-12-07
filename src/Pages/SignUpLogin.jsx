@@ -55,7 +55,7 @@ function SignUpLogin() {
 
     const createNewUser = async (values) => {
         try {
-            const res = await axios.post('http://localhost:3001/user/signup', values)
+            const res = await axios.post('https://blog-api-azqx.onrender.com/user/signup', values)
             toast.success(res.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -91,7 +91,7 @@ function SignUpLogin() {
 
     const loginUser = async (values) => {
         try {
-            const res = await axios.post('http://localhost:3001/user/login', values)
+            const res = await axios.post('https://blog-api-azqx.onrender.com/user/login', values)
             toast.success(res.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,

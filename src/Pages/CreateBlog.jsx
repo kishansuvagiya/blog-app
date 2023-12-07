@@ -57,7 +57,7 @@ function CreateBlog() {
             blogForm.append('description', values.description)
             blogForm.append('author', author)
             
-            const res = await axios.post('http://localhost:3001/blog', blogForm, {
+            const res = await axios.post('https://blog-api-azqx.onrender.com/blog', blogForm, {
                 headers: { "Content-Type": "multipart/form-data", authorization: token }
             })
             console.log(res);
@@ -99,7 +99,7 @@ function CreateBlog() {
             blogForm.append('description', values.description)
             blogForm.append('author', author)
 
-            const res = await axios.put('http://localhost:3001/blog', blogForm, {
+            const res = await axios.put('https://blog-api-azqx.onrender.com/blog', blogForm, {
                 headers: { "Content-Type": "multipart/form-data", authorization: token }
             })
             navigate('/myblog')

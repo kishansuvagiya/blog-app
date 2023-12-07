@@ -34,7 +34,7 @@ export function MyBlogCard({ item }) {
   const handleOpenedit = () => setOpenedit(!openedit);
   const deleteBlog = () => {
     let token = localStorage.getItem('token')
-    axios.delete(`http://localhost:3001/blog?id=${item._id}`, {
+    axios.delete(`https://blog-api-azqx.onrender.com/blog?id=${item._id}`, {
       headers: { authorization: token }
     })
       .then((res) => {
@@ -84,7 +84,7 @@ export function MyBlogCard({ item }) {
           onClick={gotoBlog}
         >
           <img
-            src={`http://localhost:3001/images/${item.image}`}
+            src={`https://blog-api-azqx.onrender.com/images/${item.image}`}
             alt="ui/ux review check"
             className="w-full h-72"
           />

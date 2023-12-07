@@ -27,7 +27,7 @@ export function FeaturedCard({ item }) {
         className="m-0 w-2/5 shrink-0 rounded-r-none"
       >
         <img
-          src={`http://localhost:3001/images/${item.image}`}
+          src={`https://blog-api-azqx.onrender.com/images/${item.image}`}
           alt="card-image"
           className="h-full w-full object-cover group-hover:scale-110 duration-500"
         />

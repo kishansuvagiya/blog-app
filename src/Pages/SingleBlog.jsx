@@ -51,7 +51,7 @@ function SingleBlog() {
                                 </div>
                             </div>
                             <div className='w-4/5 mx-auto mt-16'>
-                                <img src={`http://localhost:3001/images/${item.image}`} className='rounded-xl w-full' alt="" />
+                                <img src={`https://blog-api-azqx.onrender.com/images/${item.image}`} className='rounded-xl w-full' alt="" />
                             </div>
                             <div className='w-4/5 mx-auto mt-16'>
                                 <p className='md:text-2xl text-xl mt-10 text-[#2D3350] whitespace-pre-wrap blog_description first-line:uppercase first-letter:text-7xl first-letter:font-bold dark:first-letter:text-white

@@ -55,9 +55,9 @@ export function fetchBlog() {
     return async function fetchBlogThunk(dispatch, getState) {
         dispatch(setStatus(STATUSES.LOADING))
         try {
-            const res = await axios.get('http://localhost:3001/blog')
+            const res = await axios.get('https://blog-api-azqx.onrender.com/blog')
             dispatch(setData(res.data.data))
-            const res2 = await axios.get('http://localhost:3001/category')
+            const res2 = await axios.get('https://blog-api-azqx.onrender.com/category')
             dispatch(setCategory(res2.data.data))
             setTimeout(() => {
                 dispatch(setStatus(STATUSES.IDLE))
