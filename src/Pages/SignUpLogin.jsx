@@ -113,7 +113,7 @@ function SignUpLogin() {
 
         }
         catch (error) {
-            toast.error(error.message, {
+            toast.error(error.response.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
