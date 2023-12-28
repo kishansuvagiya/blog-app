@@ -11,33 +11,7 @@ import { Avatar } from '@chakra-ui/react'
 import parse from 'html-react-parser';
 
 export function BlogCard({ item }) {
-  const Theme = {
-    //   card: {
-    //     defaultProps: {
-    //       variant: "gradient",
-    //       color: "blue-gray",
-    //       shadow: true,
-    //       className: "BlogCard",
-    //     },
-    //     valid: {
-    //       variants: ["filled"],
-    //       colors: [
-    //         "blue-gray",
-    //       ],
-    //     },
-    //     styles: {
-    //       variants: {
-    //         gradient: {
-    //           "blue-gray": {
-    //             backgroud: "bg-gradient-to-tr from-blue-gray-900 to-blue-gray-700",
-    //             color: "text-white",
-    //             shadow: "shadow-blue-gray-500/40",
-    //           },
-    //         }
-    //       }
-    //     }
-    //  },
-  }
+ 
   const navigate = useNavigate()
   const gotoCategory = () => {
     navigate('/category/' + item.category.name)
@@ -47,7 +21,7 @@ export function BlogCard({ item }) {
   }
 
   return (
-    <ThemeProvider value={Theme}>
+    
       <Card className="max-w-[24rem] overflow-hidden BlogCard hover:scale-105 mt-6 duration-500 dark:bg-black " >
         <CardHeader
           floated={false}
@@ -85,8 +59,7 @@ export function BlogCard({ item }) {
           </div>
           <Typography className="font-normal dark:text-white"><i class="fa-solid fa-calendar"></i> {new Date(item.date).toLocaleDateString()}</Typography>
         </CardFooter>
-
       </Card>
-    </ThemeProvider>
+   
   );
 }

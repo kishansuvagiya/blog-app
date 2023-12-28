@@ -1,6 +1,6 @@
 import React from 'react'
 import AlsoLikeCard from '../Components/AlsoLikeCard'
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Avatar } from '@chakra-ui/react'
 import parse from 'html-react-parser';

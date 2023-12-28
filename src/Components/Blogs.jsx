@@ -1,12 +1,12 @@
 import React from 'react'
 import { BlogCard } from './BlogCard'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { STATUSES } from '../store/BlogSlice'
 
 import SkeletonCard from './Skeleton/SkeletonCard'
 
 function Blogs() {
-    const dispatch = useDispatch()
+    
     const { data, status } = useSelector(state => state.blog)
     if (status === STATUSES.ERROR) {
         return <h2>Error</h2>

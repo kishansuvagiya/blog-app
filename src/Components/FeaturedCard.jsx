@@ -5,10 +5,9 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Avatar } from '@chakra-ui/react'
 import parse from 'html-react-parser';
+import { useNavigate } from "react-router-dom";
 
 export function FeaturedCard({ item }) {
   const navigate = useNavigate()

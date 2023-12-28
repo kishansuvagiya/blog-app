@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import JoditEditor from 'jodit-react';
 import {
     Button
@@ -37,14 +37,6 @@ function CreateBlog() {
     const dispatch = useDispatch()
     const { category, blogValue, editID } = useSelector(state => state.blog)
     const editor = useRef(null);
-
-    // const config = useMemo(
-    //   {
-    //     readonly: false, // all options from https://xdsoft.net/jodit/docs/,
-    //     placeholder: placeholder || 'Start typings...'
-    //   },
-    //   [placeholder]
-    // );
     let token = localStorage.getItem('token')
     let author = localStorage.getItem('author')
 
@@ -61,7 +53,7 @@ function CreateBlog() {
                 headers: { "Content-Type": "multipart/form-data", authorization: token }
             })
             console.log(res);
-            navigate('/')
+            navigate('/myblog')
             dispatch(fetchBlog())
             toast.success(res.data.message, {
                 position: "top-left",
