@@ -14,6 +14,8 @@ import { fetchBlog } from './store/BlogSlice';
 import MaybeNavbar from './Components/MaybeNavbar';
 import CreateBlog from './Pages/CreateBlog';
 import Protect from './Protect';
+import Login from './Pages/admin/Login';
+import AdminHome from './Pages/admin/AdminHome';
 
 function App() {
   const dispatch = useDispatch()
@@ -22,7 +24,7 @@ function App() {
   }, [])
 
   return (
-    <div className="bg-white dark:bg-[#0f172a]">
+    <div className="bg-white dark:bg-[#0f172a] ">
       <BrowserRouter>
         <MaybeNavbar>
           <Navbarr />
@@ -35,6 +37,8 @@ function App() {
           <Route path='/category/:name' element={<BlogCategory />} />
           <Route path='/myblog' element={<Protect><MyBlog /></Protect>} />
           <Route path='/createblog' element={<CreateBlog />} />
+          <Route path='/admin' element={<Login />} />
+          <Route path='/admin/data' element={<AdminHome />} />
         </Routes>
         <MaybeNavbar>
           <Footer />

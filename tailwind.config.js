@@ -10,5 +10,7 @@ module.exports = withMT({
       padding: '2rem'
     }
   },
-  plugins: [],
+  plugins: [
+    
+  ],
 });

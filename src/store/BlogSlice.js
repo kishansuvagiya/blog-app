@@ -32,6 +32,9 @@ const BlogSlice = createSlice({
         setCategory: (state, action) => {
             state.category = action.payload
         },
+        deleteCat: (state, action) => {
+            state.category.splice(action.payload, 1)
+        },
         seteditID: (state, action) => {
             state.editID = -1
             state.blogValue = {
@@ -47,7 +50,7 @@ const BlogSlice = createSlice({
         },
     },
 })
-export const { setData, setCategory, setStatus, editData, seteditID } = BlogSlice.actions
+export const { setData, setCategory, setStatus, editData, seteditID, deleteCat} = BlogSlice.actions
 export default BlogSlice.reducer
 
 //Thunks

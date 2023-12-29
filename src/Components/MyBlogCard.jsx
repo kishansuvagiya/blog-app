@@ -48,7 +48,6 @@ export function MyBlogCard({ item }) {
           draggable: true,
           progress: undefined,
           theme: "dark",
-          // icon: <DeleteIcon sx={{color: red['A700']}}/>,
         });
         console.log(res);
       })
@@ -67,7 +66,6 @@ export function MyBlogCard({ item }) {
       })
   }
   const editBlog = () => {
-    // let index = data.findIndex((el) => el.title === item.title)
     navigate('/createblog')
     handleOpenedit()
     dispatch(editData({ item: item, id: item._id}))

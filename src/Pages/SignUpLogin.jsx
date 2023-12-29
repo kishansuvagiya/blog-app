@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch } from 'react-redux';
+import { Button } from '@material-tailwind/react';
 
 const SignupSchema = Yup.object().shape({
     fullname: Yup.string()
@@ -42,7 +42,7 @@ const loginSchema = Yup.object().shape({
 
 function SignUpLogin() {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
+    const [isLoading, setIsLoading] = useState(false);
     const [signUpValue, setSignUpValues] = useState({
         fullname: '',
         username: '',
@@ -54,8 +54,16 @@ function SignUpLogin() {
     })
 
     const createNewUser = async (values) => {
+        setIsLoading(true);
         try {
             const res = await axios.post('https://blog-api-azqx.onrender.com/user/signup', values)
+            if (res.data.status == 'success') {
+                navigate('/')
+            }
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('author', res.data.data._id)
+            localStorage.setItem('user', res.data.data.fullname)
+            console.log(res);
             toast.success(res.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -66,16 +74,8 @@ function SignUpLogin() {
                 progress: undefined,
                 theme: "dark",
             });
-            setTimeout(() => {
-                navigate('/')
-            }, 1200)
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('author', res.data.data._id)
-            localStorage.setItem('user', res.data.data.fullname)
-            console.log(res);
-
         } catch (error) {
-            toast.error(error.message, {
+            toast.error(error.response.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -87,11 +87,22 @@ function SignUpLogin() {
             });
             console.log(error);
         }
+        finally {
+            setIsLoading(false);
+        }
     }
 
     const loginUser = async (values) => {
+        setIsLoading(true);
         try {
             const res = await axios.post('https://blog-api-azqx.onrender.com/user/login', values)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('author', res.data.data._id)
+            localStorage.setItem('user', res.data.data.fullname)
+            if (res.data.status == 'success') {
+                navigate('/')
+            }
+            // console.log(res.data.token);
             toast.success(res.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -103,14 +114,6 @@ function SignUpLogin() {
                 theme: "dark",
                 // icon: <LoginIcon sx={{ color: lightGreen['A400'] }} />
             });
-            setTimeout(() => {
-                navigate('/')
-            }, 1200)
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('author', res.data.data._id)
-            localStorage.setItem('user', res.data.data.fullname)
-            // console.log(res.data.token);
-
         }
         catch (error) {
             toast.error(error.response.data.message, {
@@ -124,6 +127,9 @@ function SignUpLogin() {
                 theme: "dark",
             });
             console.log(error);
+        }
+        finally {
+            setIsLoading(false);
         }
     }
 
@@ -155,7 +161,7 @@ function SignUpLogin() {
                                 })
                             }}
                         >
-                            <Form  className="sign-in-form">
+                            <Form className="sign-in-form">
                                 <h2 className="title ml-32">Sign in</h2>
                                 <div className="input-field">
                                     <i className="fas fa-user" />
@@ -169,7 +175,9 @@ function SignUpLogin() {
                                 <div className='errormsg'><ErrorMessage name='password' /></div>
                                 <br />
                                 <div className='ml-32'>
-                                    <input type="submit" defaultValue="Login" className="btn solid" />
+                                {isLoading ?
+                                        <Button loading={true} disabled className="btn"> loading . . .  </Button> :
+                                        <Button type="submit" defaultValue="Login" className="btn"> login </Button>}
                                 </div>
                             </Form>
                         </Formik>
@@ -188,7 +196,7 @@ function SignUpLogin() {
                                 })
                             }}
                         >
-                            <Form  className="sign-up-form">
+                            <Form className="sign-up-form">
                                 <h2 className="title ml-32">Sign up</h2>
                                 <div className="input-field">
                                     <i className="fas fa-user" />
@@ -213,7 +221,9 @@ function SignUpLogin() {
                                 <div className='errormsg'><ErrorMessage name='cpassword' /></div>
                                 <br />
                                 <div className='ml-32'>
-                                    <input type="submit" className="btn" defaultValue="Sign up" />
+                                    {isLoading ?
+                                        <Button loading={true} disabled className="btn"> loading . . .  </Button> :
+                                        <Button type="submit" defaultValue="Login" className="btn"> signup </Button>}
                                 </div>
                             </Form>
                         </Formik>
