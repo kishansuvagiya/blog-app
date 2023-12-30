@@ -112,7 +112,6 @@ function SignUpLogin() {
                 draggable: true,
                 progress: undefined,
                 theme: "dark",
-                // icon: <LoginIcon sx={{ color: lightGreen['A400'] }} />
             });
         }
         catch (error) {
@@ -176,7 +175,7 @@ function SignUpLogin() {
                                 <br />
                                 <div className='ml-32'>
                                 {isLoading ?
-                                        <Button loading={true} disabled className="btn"> loading . . .  </Button> :
+                                        <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
                                         <Button type="submit" defaultValue="Login" className="btn"> login </Button>}
                                 </div>
                             </Form>
@@ -222,7 +221,7 @@ function SignUpLogin() {
                                 <br />
                                 <div className='ml-32'>
                                     {isLoading ?
-                                        <Button loading={true} disabled className="btn"> loading . . .  </Button> :
+                                        <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
                                         <Button type="submit" defaultValue="Login" className="btn"> signup </Button>}
                                 </div>
                             </Form>
