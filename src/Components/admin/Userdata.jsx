@@ -27,14 +27,14 @@ function Userdata() {
             dispatch(setStatus(STATUSES.ERROR))
         }
     }
-    const deleteUser = async (id,index) => {
+    const deleteUser = async (id, index) => {
         dispatch(setStatus(STATUSES.LOADING))
         try {
             const res = await axios.delete(`https://blog-api-azqx.onrender.com/admin/userdelete?id=${id}`, {
-                headers: {Authorization: token}
+                headers: { Authorization: token }
             })
-            // fetchUserdata()
-            let copyData = data.splice(index, 1)
+            const copyData = [...data]
+            copyData.splice(index, 1)
             setData(copyData)
             dispatch(setStatus(STATUSES.IDLE))
             toast.success(res.data.message, {
@@ -76,7 +76,7 @@ function Userdata() {
                                 <tr className='border-2 text-center' key={index}>
                                     <td className='py-2'>{item.username}</td>
                                     <td className='py-2'>{item.fullname}</td>
-                                    <td className='py-2'> <IconButton className="rounded-full  hover:bg-red-600"  onClick={() => deleteUser(item._id,index)}><i className="fa-solid fa-trash"></i></IconButton> </td>
+                                    <td className='py-2'> <IconButton className="rounded-full  hover:bg-red-600" onClick={() => deleteUser(item._id, index)}><i className="fa-solid fa-trash"></i></IconButton> </td>
                                 </tr>
                             )
                         })
