@@ -59,7 +59,7 @@ function Userdata() {
             <table className='w-full table-auto  mt-6 text-black dark:text-white text-lg'>
                 <thead>
                     <tr className='border-2'>
-                        <th className='py-3'>Username</th>
+                        <th className='py-3'>Email</th>
                         <th className='py-3'>Full name</th>
                         <th className='py-3'>Delete</th>
                     </tr>
@@ -74,7 +74,7 @@ function Userdata() {
                         data.map((item, index) => {
                             return (
                                 <tr className='border-2 text-center' key={index}>
-                                    <td className='py-2'>{item.username}</td>
+                                    <td className='py-2'>{item.email}</td>
                                     <td className='py-2'>{item.fullname}</td>
                                     <td className='py-2'> <IconButton className="rounded-full  hover:bg-red-600" onClick={() => deleteUser(item._id, index)}><i className="fa-solid fa-trash"></i></IconButton> </td>
                                 </tr>

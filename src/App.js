@@ -16,6 +16,7 @@ import CreateBlog from './Pages/CreateBlog';
 import Protect from './Protect';
 import Login from './Pages/admin/Login';
 import AdminHome from './Pages/admin/AdminHome';
+import ForgotPassword from './Pages/ForgotPassword';
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<SignUpLogin />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/blog/:id' element={<SingleBlog />} />
           <Route path='/category/:name' element={<BlogCategory />} />
           <Route path='/myblog' element={<Protect><MyBlog /></Protect>} />

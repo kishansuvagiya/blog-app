@@ -73,8 +73,20 @@ input {
     padding: 0 0.4rem;
     position: relative;
 }
+.forgot-input-field{
+    max-width: 380px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px auto;
+    height: 55px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    /* position: relative; */
+}
 
-.input-field i {
+.input-field i, .forgot-input-field i {
     text-align: center;
     line-height: 55px;
     color: #acacac;
@@ -82,7 +94,7 @@ input {
     font-size: 1.1rem;
 }
 
-.input-field input {
+.input-field input, .forgot-input-field input {
     background: none;
     outline: none;
     border: none;

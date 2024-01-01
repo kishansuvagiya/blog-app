@@ -156,7 +156,6 @@ function CreateBlog() {
                                     <Form>
 
                                         <div className="grid gap-4">
-                                            {/* <input type="text" autofocus="autofocus" style={{display: "none"}} /> */}
                                             <div>
                                                 <Field placeholder="Blog Title" name='title' className=' w-full border-2 p-2 rounded border-black placeholder:text-gray-700 text-black font-medium' />
                                                 <div className='text-red-700'><ErrorMessage name='title' /></div>

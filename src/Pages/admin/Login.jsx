@@ -24,9 +24,6 @@ function Login() {
         try {
             const res = await axios.post("https://blog-api-azqx.onrender.com/admin/login", logindata)
             localStorage.setItem('admin-token', res.data.token)
-            if (res.data.status == 'success') {
-                navigate('/admin/data')
-            }
             toast.success(res.data.message, {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -37,6 +34,9 @@ function Login() {
                 progress: undefined,
                 theme: "dark",
             });
+            if (res.data.status == 'success') {
+                navigate('/admin/data')
+            }
             console.log(res);
         } catch (error) {
             toast.error(error.response.data.message, {

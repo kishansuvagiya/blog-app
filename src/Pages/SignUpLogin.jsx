@@ -5,7 +5,7 @@ import signupimg from './other/signupimg.svg'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@material-tailwind/react';
@@ -15,10 +15,9 @@ const SignupSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
         .required('Fullname is Required'),
-    username: Yup.string()
-        .min(3, 'Too Short!')
-        .max(10, 'Too Long!')
-        .required('UserName is Required'),
+    email: Yup.string()
+        .email('Invalid email format')
+        .required('Email is Required'),
     password: Yup.string()
         .min(6, 'Minimum 6 character required')
         .required('Password is Required'),
@@ -31,10 +30,10 @@ const SignupSchema = Yup.object().shape({
         .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 const loginSchema = Yup.object().shape({
-    username: Yup.string()
+    email: Yup.string()
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
-        .required('UserName is Required'),
+        .required('Email is Required'),
     password: Yup.string()
         .min(6, 'Minimum 6 character required')
         .required('Password is Required')
@@ -45,11 +44,11 @@ function SignUpLogin() {
     const [isLoading, setIsLoading] = useState(false);
     const [signUpValue, setSignUpValues] = useState({
         fullname: '',
-        username: '',
+        email: '',
         password: '',
     })
     const [loginValue, setLoginValue] = useState({
-        username: '',
+        email: '',
         password: '',
     })
 
@@ -58,7 +57,9 @@ function SignUpLogin() {
         try {
             const res = await axios.post('https://blog-api-azqx.onrender.com/user/signup', values)
             if (res.data.status == 'success') {
-                navigate('/')
+                setTimeout(() => {
+                    navigate('/')
+                }, 1500);
             }
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('author', res.data.data._id)
@@ -100,7 +101,9 @@ function SignUpLogin() {
             localStorage.setItem('author', res.data.data._id)
             localStorage.setItem('user', res.data.data.fullname)
             if (res.data.status == 'success') {
-                navigate('/')
+                setTimeout(() => {
+                    navigate('/')
+                }, 1500);
             }
             // console.log(res.data.token);
             toast.success(res.data.message, {
@@ -155,7 +158,7 @@ function SignUpLogin() {
                                 await loginUser(values)
                                 // action.resetForm()
                                 setLoginValue({
-                                    username: '',
+                                    email: '',
                                     password: '',
                                 })
                             }}
@@ -164,19 +167,22 @@ function SignUpLogin() {
                                 <h2 className="title ml-32">Sign in</h2>
                                 <div className="input-field">
                                     <i className="fas fa-user" />
-                                    <Field type="text" name='username' placeholder="Username" />
+                                    <Field type="text" name='email' placeholder="Email" />
                                 </div>
-                                <div className='errormsg'><ErrorMessage name='username' /></div>
+                                <div className='errormsg'><ErrorMessage name='email' /></div>
                                 <div className="input-field">
                                     <i className="fas fa-lock" />
                                     <Field type="password" name='password' placeholder="Password" />
                                 </div>
                                 <div className='errormsg'><ErrorMessage name='password' /></div>
                                 <br />
+                                <div className=' -mt-4'>
+                                    <Link to='/forgot-password' className='text-[#583bc4] font-semibold hover:text-[#402d85]'>Forgot Password ?</Link>
+                                </div>
                                 <div className='ml-32'>
-                                {isLoading ?
+                                    {isLoading ?
                                         <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                        <Button type="submit" defaultValue="Login" className="btn"> login </Button>}
+                                        <Button type="submit" defaultValue="Login" className="btn"> sign in </Button>}
                                 </div>
                             </Form>
                         </Formik>
@@ -190,7 +196,7 @@ function SignUpLogin() {
                                 // action.resetForm()
                                 setSignUpValues({
                                     fullname: '',
-                                    username: '',
+                                    email: '',
                                     password: '',
                                 })
                             }}
@@ -204,9 +210,9 @@ function SignUpLogin() {
                                 <div className='errormsg'><ErrorMessage name='fullname' /></div>
                                 <div className="input-field">
                                     <i className="fas fa-user" />
-                                    <Field type="text" name='username' placeholder="Username" />
+                                    <Field type="text" name='email' placeholder="Email" />
                                 </div>
-                                <div className='errormsg'><ErrorMessage name='username' /></div>
+                                <div className='errormsg'><ErrorMessage name='email' /></div>
 
                                 <div className="input-field">
                                     <i className="fas fa-lock" />
@@ -222,7 +228,7 @@ function SignUpLogin() {
                                 <div className='ml-32'>
                                     {isLoading ?
                                         <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                        <Button type="submit" defaultValue="Login" className="btn"> signup </Button>}
+                                        <Button type="submit" defaultValue="Login" className="btn"> sign up </Button>}
                                 </div>
                             </Form>
                         </Formik>
