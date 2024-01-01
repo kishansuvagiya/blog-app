@@ -81,7 +81,7 @@ function CreateBlog() {
         }
     }
     const updateBlog = async (values) => {
-        console.log(values);
+        // console.log(values);
         try {
             let blogForm = new FormData()
             blogForm.append('id', values._id)
@@ -91,7 +91,7 @@ function CreateBlog() {
             blogForm.append('description', values.description)
             blogForm.append('author', author)
 
-            const res = await axios.put('https://blog-api-azqx.onrender.com/blog', blogForm, {
+            const res = await axios.put(`https://blog-api-azqx.onrender.com/blog?id=${values._id}`, blogForm, {
                 headers: { "Content-Type": "multipart/form-data", authorization: token }
             })
             navigate('/myblog')
