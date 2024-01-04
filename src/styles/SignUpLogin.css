@@ -116,7 +116,6 @@ input {
 
 .btn {
     width: 150px;
-    background-color: #4212ee;
     border: none;
     outline: none;
     height: 49px;
@@ -124,13 +123,9 @@ input {
     color: #fff;
     text-transform: uppercase;
     font-weight: 600;
-    margin: 10px 0;
+    margin: 10px;
     cursor: pointer;
     transition: 0.5s;
-}
-
-.btn:hover {
-    background-color: #583bc4;
 }
 
 .panels-container {

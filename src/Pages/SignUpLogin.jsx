@@ -181,8 +181,8 @@ function SignUpLogin() {
                                 </div>
                                 <div className='ml-32'>
                                     {isLoading ?
-                                        <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                        <Button type="submit" defaultValue="Login" className="btn"> sign in </Button>}
+                                        <Button disabled className="btn bg-[#4212ee]"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
+                                        <Button type="submit" defaultValue="Login" className="btn bg-[#4212ee] hover:bg-[#583bc4]"> sign in </Button>}
                                 </div>
                             </Form>
                         </Formik>
@@ -227,8 +227,8 @@ function SignUpLogin() {
                                 <br />
                                 <div className='ml-32'>
                                     {isLoading ?
-                                        <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                        <Button type="submit" defaultValue="Login" className="btn"> sign up </Button>}
+                                        <Button disabled className="btn bg-[#4212ee]"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
+                                        <Button type="submit" defaultValue="Login" className="btn bg-[#4212ee] hover:bg-[#583bc4]"> sign up </Button>}
                                 </div>
                             </Form>
                         </Formik>

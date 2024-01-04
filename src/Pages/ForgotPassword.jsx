@@ -1,6 +1,6 @@
 import { Button } from '@material-tailwind/react'
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify'
 import forgotSVG from './other/forgot_password.svg'
@@ -18,7 +18,9 @@ function ForgotPassword() {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [validateOTP, setValidateOTP] = useState(false);
-
+    const [resendLoading, setResendLoading] = useState(false);
+    const [resendbtn, setResendbtn] = useState(false);
+    const [timeLeft, setTimeLeft] = useState();
     // ________________ send OTP ________________
     const dataHandler = (e) => {
         const { name, value } = e.target
@@ -27,19 +29,14 @@ function ForgotPassword() {
         })
         setErrorMessage('')
     }
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        if (!data.email) {
-            setErrorMessage('Email is required.')
-            return
-        }
-        setIsLoading(true)
+    const sendOTP = async () => {
         try {
             const res = await axios.post('https://blog-api-azqx.onrender.com/user/forgot-password', data)
             if (res.data.status == 'success') {
                 setValidateOTP(true)
                 setNewData({ email: data.email })
                 setErrorMessage('')
+                setTimeLeft(120)
             }
             toast.success(res.data.message, {
                 position: "bottom-center",
@@ -66,11 +63,20 @@ function ForgotPassword() {
         }
         finally {
             setIsLoading(false)
+            setResendLoading(false)
         }
-
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (!data.email) {
+            setErrorMessage('Email is required.')
+            return
+        }
+        setIsLoading(true)
+        await sendOTP()
     }
 
-      // ________________ verify OTP and new password ________________
+    // ________________ verify OTP and new password ________________
     const newDataHandler = (e) => {
         const { name, value } = e.target
         setNewData({
@@ -121,6 +127,26 @@ function ForgotPassword() {
         }
 
     }
+    const resendOTP = async () => {
+        setResendLoading(true)
+        await sendOTP()
+        setResendbtn(false)
+        setTimeLeft(120)
+    }
+    const startTimer = () => {
+        setTimeout(() => {
+            if (timeLeft > 0) {
+                setTimeLeft(prevTime => prevTime - 1);
+            } else {
+                setResendbtn(true)
+            }
+        }, 1000);
+    };
+    useEffect(() => {
+        if (validateOTP) {
+            startTimer();
+        }
+    }, [timeLeft])
     return (
         <div className="signUpLogin" id='container'>
             <div className='forms-container text-center'>
@@ -135,8 +161,8 @@ function ForgotPassword() {
                             {errorMessage && <div className='errormsg'><span>{errorMessage}</span></div>}
                             <div className="text-center">
                                 {isLoading ?
-                                    <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                    <Button type="submit" className="btn"> submit </Button>}
+                                    <Button disabled className="btn bg-[#4212ee]"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
+                                    <Button type="submit" className="btn bg-[#4212ee] hover:bg-[#583bc4]"> submit </Button>}
                             </div>
                         </form>}
 
@@ -158,12 +184,25 @@ function ForgotPassword() {
                             {errorMessage && <div className='errormsg'><span>{errorMessage}</span></div>}
                             <div className="text-center">
                                 {isLoading ?
-                                    <Button disabled className="btn"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
-                                    <Button type="submit" className="btn"> submit </Button>}
+                                    <Button disabled className="btn bg-[#4212ee]"><i className="fa-solid fa-circle-notch fa-spin"></i> loading</Button> :
+                                    <Button type="submit" className="btn bg-[#4212ee] hover:bg-[#583bc4]"> submit </Button>}
+                                {
+                                    resendbtn ?
+                                        resendLoading ?
+                                            <Button className='btn bg-deep-orange-600' disabled>
+                                                <i className="fa-solid fa-circle-notch fa-spin"></i> Loading
+                                            </Button> :
+                                            <Button
+                                                className='btn bg-deep-orange-600 hover:bg-deep-orange-400'
+                                                onClick={resendOTP}>
+                                                Resend OTP
+                                            </Button> :
+                                        <p className='text-sm text-gray-600 mt-3'>Resend OTP ({timeLeft > 0 ? timeLeft : 0}s)</p>
+                                }
                             </div>
                         </form>
                         : null}
-                   
+
                 </div>
             </div>
 
