@@ -21,16 +21,16 @@ function MyBlog() {
                     userBlog.length > 0 ?
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gap-y-4">
                             <>
-                               { status === STATUSES.LOADING ?
-                                <>
-                                    <SkeletonCard />
-                                    <SkeletonCard />
-                                    <SkeletonCard />
-                                </>
-                                :
-                                userBlog.map((item, inx) => {
-                                    return <MyBlogCard item={item} />
-                                })}
+                                {status === STATUSES.LOADING ?
+                                    <>
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                        <SkeletonCard />
+                                    </>
+                                    :
+                                    userBlog.map((item, inx) => {
+                                        return <MyBlogCard item={item} />
+                                    })}
                             </>
                         </div>
                         :

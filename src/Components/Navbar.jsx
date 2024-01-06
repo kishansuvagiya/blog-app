@@ -6,19 +6,22 @@ import {
   Button,
   IconButton,
   Switch,
-  Tooltip
+  Tooltip,
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from "react-redux";
+import { setDarkMode } from "../store/BlogSlice";
 
 export function Navbarr() {
+  const { darkMode } = useSelector((state) => state.blog)
   const [openNav, setOpenNav] = React.useState(false);
-  const [dark, setDark] = useState(false)
   const [token, settoken] = React.useState(localStorage.getItem('token'));
   const navigate = useNavigate()
-  
+  const dispatch = useDispatch()
   let user = localStorage.getItem('user')
+  
   React.useEffect(() => {
     window.addEventListener(
       "resize",
@@ -51,7 +54,7 @@ export function Navbarr() {
   }
   const darkTheme = () => {
     document.documentElement.classList.toggle('dark')
-    setDark(!dark)
+    dispatch(setDarkMode(!darkMode))
   }
 
   return (
@@ -68,11 +71,12 @@ export function Navbarr() {
           </Link>
           {
             token ?
-              <Typography className="inline text-base font-normal italic font-mono"><i className="fa-solid fa-hand"></i> Hello {user} ! </Typography>
+              <Typography className="inline text-base font-normal italic font-mono mx-4 flex-grow xl:flex-grow-0 text-center"><i className="fa-solid fa-hand"></i> Hello {user} ! </Typography>
               : null
           }
+        
           <div className="hidden lg:block ">
-            <Tooltip content={dark ? 'Switch to Light Mode' : 'Switch to Dark Mode'} placement="bottom">
+            <Tooltip content={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'} placement="bottom">
               <span className="me-2"><Switch onClick={darkTheme} ripple={false}
                 className="h-full w-full checked:bg-[#0f172a]"
                 containerProps={{
@@ -104,7 +108,7 @@ export function Navbarr() {
           </div>
           <IconButton
             variant="text"
-            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden "
+            className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
@@ -142,17 +146,17 @@ export function Navbarr() {
         </div>
         <MobileNav open={openNav}>
           <div className="container mx-auto">
-            <Button variant="gradient" size="sm" fullWidth className="mb-2 mt-6" onClick={() => navigate('/createblog')}>
+            <Button variant="outlined" color="white" size="sm" fullWidth className="mb-4 mt-6" onClick={() => navigate('/createblog')}>
               <i className="fa-solid fa-circle-plus"></i>
               <span className="ps-2">Create Blog</span>
             </Button>
             {
               token ?
                 <>
-                  <Button variant="gradient" size="sm" fullWidth className="mb-2 me-2" onClick={myBlog}>
+                  <Button variant="outlined" color="white" size="sm" fullWidth className="mb-4" onClick={myBlog}>
                     <span>My Blog</span>
                   </Button>
-                  <Button variant="gradient" size="sm" fullWidth className="mb-2 " onClick={logOut}>
+                  <Button variant="outlined" color="white" size="sm" fullWidth className="mb-2 " onClick={logOut}>
                     <span>LogOut</span>
                   </Button>
                 </>

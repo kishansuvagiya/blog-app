@@ -20,6 +20,9 @@ const BlogSlice = createSlice({
             description: '',
         },
         editID: -1,
+        searchText: '',
+        searchBlog: [],
+        darkMode: false
     },
     reducers: {
         setData: (state, action) => {
@@ -48,9 +51,19 @@ const BlogSlice = createSlice({
             state.blogValue = action.payload.item
             state.editID = action.payload.id
         },
+        setSearchText(state, action){
+            state.searchText = action.payload
+        },
+        setSearchBlog: (state, action) => {
+            state.searchBlog = action.payload
+            console.log('slice', action.payload);
+        },
+        setDarkMode(state, action){
+            state.darkMode = action.payload
+        },
     },
 })
-export const { setData, setCategory, setStatus, editData, seteditID, deleteCat} = BlogSlice.actions
+export const { setData, setCategory, setStatus, editData, seteditID, deleteCat, setSearchText, setSearchBlog, setDarkMode} = BlogSlice.actions
 export default BlogSlice.reducer
 
 //Thunks

@@ -2,16 +2,11 @@ import React from 'react'
 import { BlogCard } from './BlogCard'
 import { useSelector } from 'react-redux'
 import { STATUSES } from '../store/BlogSlice'
-
 import SkeletonCard from './Skeleton/SkeletonCard'
 
 function Blogs() {
-    
     const { data, status } = useSelector(state => state.blog)
-    if (status === STATUSES.ERROR) {
-        return <h2>Error</h2>
-    }
-
+    
     return (
         <div>
             <div className="container mt-16">

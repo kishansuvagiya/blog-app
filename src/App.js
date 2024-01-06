@@ -17,6 +17,7 @@ import Protect from './Protect';
 import Login from './Pages/admin/Login';
 import AdminHome from './Pages/admin/AdminHome';
 import ForgotPassword from './Pages/ForgotPassword';
+import SearchBlog from './Components/SearchBlog';
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +34,7 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/search' element={<SearchBlog />} />
           <Route path='/login' element={<SignUpLogin />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/blog/:id' element={<SingleBlog />} />
