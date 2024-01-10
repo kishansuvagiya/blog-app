@@ -10,6 +10,7 @@ import {
 import Userdata from '../../Components/admin/Userdata';
 import Category from '../../Components/admin/Category';
 import { useNavigate } from 'react-router-dom';
+import Blog from '../../Components/admin/Blog';
 
 function AdminHome() {
     const navigate = useNavigate()
@@ -29,6 +30,9 @@ function AdminHome() {
                         <Tab value='Category'>
                             Category
                         </Tab>
+                        <Tab value='blog'>
+                            Blogs
+                        </Tab>
                     </TabsHeader>
                     <TabsBody>
                         <TabPanel value='user' className="py-0">
@@ -36,6 +40,9 @@ function AdminHome() {
                         </TabPanel>
                         <TabPanel value='Category' className="py-0">
                             <Category />
+                        </TabPanel>
+                        <TabPanel value='blog' className="py-0">
+                            <Blog />
                         </TabPanel>
                     </TabsBody>
                 </Tabs>

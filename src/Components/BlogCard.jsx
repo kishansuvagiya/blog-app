@@ -52,7 +52,7 @@ export function BlogCard({ item }) {
         <CardFooter className="flex items-center justify-between pt-0">
           <div className="flex items-center -space-x-3">
               <Avatar name={item.author.fullname} size='sm' />
-            <Typography className="font-normal ps-5 dark:text-white">
+            <Typography className="font-normal ps-5 dark:text-white capitalize">
               {/* <i class="fa-solid fa-circle-user"></i>  */}
                {item.author.fullname} 
             </Typography>

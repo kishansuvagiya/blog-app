@@ -62,7 +62,7 @@ export function FeaturedCard({ item }) {
           </svg>
         </Button>
         <div className="flex items-center justify-between -space-x-3 mt-2 ">
-          <Typography className="font-normal dark:text-white leading-8">
+          <Typography className="font-normal dark:text-white leading-8 capitalize">
             <Avatar name={item.author.fullname} size='sm' />
             {/* <i class="fa-solid fa-circle-user"></i>  */}
             &nbsp; {item.author.fullname}</Typography>
