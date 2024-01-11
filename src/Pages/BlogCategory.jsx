@@ -10,7 +10,7 @@ function BlogCategory() {
         return el.category.name === params.name
     })
     return (
-        <div>
+        <div className='min-h-screen'>
             <div className="container pt-28">
                 <h1 className='text-4xl md:text-5xl lg:text-6xl font-medium  mb-8 dark:text-white'>{params.name}
                 </h1>
@@ -21,7 +21,7 @@ function BlogCategory() {
                                 return <BlogCard item={item} />
                             }) :
                             <>
-                                <div style={{height: "309px"}} className='dark:text-white'>
+                                <div  className='dark:text-white'>
                                     <h1 className='text-xl pt-5'>No Blogs available in this category.</h1>
                                 </div>
                             </>

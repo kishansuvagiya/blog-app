@@ -8,7 +8,7 @@ import SingleBlog from './Pages/SingleBlog';
 import BlogCategory from './Pages/BlogCategory';
 import MyBlog from './Pages/MyBlog';
 import ScrollToTop from './Components/ScrollToTop';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchBlog } from './store/BlogSlice';
 import MaybeNavbar from './Components/MaybeNavbar';
@@ -17,7 +17,7 @@ import Protect from './Protect';
 import Login from './Pages/admin/Login';
 import AdminHome from './Pages/admin/AdminHome';
 import ForgotPassword from './Pages/ForgotPassword';
-import SearchBlog from './Components/SearchBlog';
+import ScrollToTopButton from './Components/ScrollToTopButton';
 
 function App() {
   const dispatch = useDispatch()
@@ -26,7 +26,7 @@ function App() {
   }, [])
 
   return (
-    <div className="bg-white dark:bg-[#0f172a] ">
+    <div className="bg-white dark:bg-[#0f172a] min-h-screen">
       <BrowserRouter>
         <MaybeNavbar>
           <Navbarr />
@@ -34,7 +34,6 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/search' element={<SearchBlog />} />
           <Route path='/login' element={<SignUpLogin />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/blog/:id' element={<SingleBlog />} />
@@ -47,6 +46,7 @@ function App() {
         <MaybeNavbar>
           <Footer />
         </MaybeNavbar>
+        <ScrollToTopButton />
       </BrowserRouter>
     </div>
   );

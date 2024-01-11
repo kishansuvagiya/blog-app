@@ -105,3 +105,22 @@
       transform: rotate(360deg);
     }
   } 
+
+  /* scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(to bottom, #263238, #37474f); 
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 20;
+}
+

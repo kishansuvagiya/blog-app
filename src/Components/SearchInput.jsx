@@ -2,10 +2,21 @@ import { Input } from '@material-tailwind/react'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchText } from '../store/BlogSlice';
+import { useState } from 'react';
 
 function SearchInput() {
     const { searchText, darkMode } = useSelector((state) => state.blog)
+    const [close, setClose] = useState(false)
     const dispatch = useDispatch()
+
+    const searchHandler = (e) => {
+      dispatch(setSearchText(e.target.value))
+      setClose(true)
+    }
+    const clearSearchText = () => {
+      dispatch(setSearchText(''))
+      setClose(false)
+    }
   return (
     <div>
         <div className=' mx-9 mb-8 lg:w-[46%] lg:ms-auto '>
@@ -16,9 +27,9 @@ function SearchInput() {
               size='lg'
               // placeholder='Search'
               className="dark:text-white "
-              icon={<i class="fa-solid fa-magnifying-glass"></i>}
+              icon={close ? <i className="fa-solid fa-xmark cursor-pointer" onClick={clearSearchText}></i> :<i class="fa-solid fa-magnifying-glass"></i>}
               value={searchText}
-              onChange={(e) => dispatch(setSearchText(e.target.value))}
+              onChange={searchHandler}
             />    
         </div>
     </div>

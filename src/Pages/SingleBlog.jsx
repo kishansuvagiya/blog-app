@@ -27,7 +27,7 @@ function SingleBlog() {
     }).sort(() => Math.random() - 0.5).slice(0, 4);
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <div className="container pt-28">
                 {
                     status === STATUSES.LOADING ?

@@ -60,7 +60,7 @@ function SearchBlog() {
                         :
                         <>
                             <div className='dark:text-white flex justify-center items-center'>
-                                <h1 className='text-2xl'>No Blogs found.</h1>
+                                <h1 className='text-2xl'>No Blog found.</h1>
                             </div>
                         </>
                 }

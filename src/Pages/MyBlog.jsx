@@ -14,7 +14,7 @@ function MyBlog() {
         return author === el.author._id
     })
     return (
-        <div>
+        <div className='min-h-screen'>
             <div className="container pt-28">
                 <h2 className=' text-3xl md:text-4xl lg:text-5xl font-bold mb-5 dark:text-white'>My Blog</h2>
                 {
